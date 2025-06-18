@@ -1,0 +1,23 @@
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#calcPad .calcRow #title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#screen {
+	display: flex;
+	justify-content: end;
+	background-color: rgb(172, 172, 172);
+	margin: 0px;
+	padding: 16px;
+}
+button {
+	min-width: 50px;
+	min-height: 50px;
+	padding: 0;
+	border: 1;
+}
