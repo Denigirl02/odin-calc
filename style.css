@@ -65,5 +65,9 @@ button {
 }
 
 .operator {
-	background-color: blueviolet;
+	background-color: pink;
+}
+
+.function {
+	background-color: salmon;
 }

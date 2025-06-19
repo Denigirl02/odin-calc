@@ -1,6 +1,7 @@
 let firstNumber;
 let secondNumber;
 let operator = "";
+let resultDisplayed = false;
 
 let screenTop = "";
 let screenBottom = "";
@@ -70,6 +71,7 @@ btnAc.addEventListener("click", function () {
 	firstNumber = "";
 	secondNumber = "";
 	operator = "";
+	resultDisplayed = false;
 	clearTopText();
 	clearOperatorText();
 	clearBottomText();
@@ -101,8 +103,6 @@ btnDelete.addEventListener("click", function () {
 
 //Keyboard Support
 addEventListener("keypress", (event) => {
-	console.log(event.key);
-
 	switch (event.key) {
 		case "1":
 			populateBottomText(1);
@@ -154,6 +154,9 @@ addEventListener("keypress", (event) => {
 			break;
 		case "Enter":
 			btnEqualsEvents();
+			break;
+		case "Delete":
+			textBottom.textContent = textBottom.textContent.slice(0, -1);
 			break;
 	}
 });
@@ -266,6 +269,7 @@ function btnEqualsEvents() {
 		firstNumber = "";
 		secondNumber = "";
 		operator = "";
+		resultDisplayed = true;
 	}
 }
 
@@ -288,6 +292,10 @@ function clearOperatorText() {
 	textOperator.textContent = "";
 }
 function populateBottomText(number) {
+	if (resultDisplayed == true) {
+		textBottom.textContent = "";
+		resultDisplayed = false;
+	}
 	if (number == ".") {
 		if (!textBottom.textContent.includes(".")) {
 			textBottom.textContent = textBottom.textContent + number;
