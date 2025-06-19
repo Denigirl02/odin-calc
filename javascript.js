@@ -76,68 +76,86 @@ btnAc.addEventListener("click", function () {
 });
 
 btnAdd.addEventListener("click", function () {
-	if (operator == "") {
-		operator = "add";
-		textOperator.textContent = "+";
-		commitFirstNumber(textBottom.textContent);
-		populateTopText(firstNumber);
-	} else {
-		operator = "add";
-		textOperator.textContent = "+";
-	}
+	btnAddEvents();
 });
 
 btnSubtract.addEventListener("click", function () {
-	if (operator == "") {
-		operator = "subtract";
-		textOperator.textContent = "-";
-		commitFirstNumber(textBottom.textContent);
-		populateTopText(firstNumber);
-	} else {
-		operator = "subtract";
-		textOperator.textContent = "-";
-	}
+	btnSubtractEvents();
 });
 
 btnMultiply.addEventListener("click", function () {
-	if (operator == "") {
-		operator = "multiply";
-		textOperator.textContent = "x";
-		commitFirstNumber(textBottom.textContent);
-		populateTopText(firstNumber);
-	} else {
-		operator = "multiply";
-		textOperator.textContent = "x";
-	}
+	btnMultiplyEvents();
 });
 
 btnDivide.addEventListener("click", function () {
-	if (operator == "") {
-		operator = "divide";
-		textOperator.textContent = "/";
-		commitFirstNumber(textBottom.textContent);
-		populateTopText(firstNumber);
-	} else {
-		operator = "divide";
-		textOperator.textContent = "/";
-	}
+	btnDivideEvents();
 });
 
 btnEquals.addEventListener("click", function () {
-	if ((!(firstNumber == ""), !(secondNumber == ""), !(operator == ""))) {
-		commitSecondNumber(textBottom.textContent);
-		clearTopText();
-		clearOperatorText();
-		clearBottomText();
-		populateBottomText(operate(firstNumber, secondNumber, operator));
-		firstNumber = "";
-		secondNumber = "";
-		operator = "";
-	}
+	btnEqualsEvents();
 });
 
 btnDelete.addEventListener("click", function () {
 	textBottom.textContent = textBottom.textContent.slice(0, -1);
+});
+
+//Keyboard Support
+addEventListener("keypress", (event) => {
+	console.log(event.key);
+
+	switch (event.key) {
+		case "1":
+			populateBottomText(1);
+			break;
+		case "2":
+			populateBottomText(2);
+			break;
+		case "3":
+			populateBottomText(3);
+			break;
+		case "4":
+			populateBottomText(4);
+			break;
+		case "5":
+			populateBottomText(5);
+			break;
+		case "6":
+			populateBottomText(6);
+			break;
+		case "7":
+			populateBottomText(7);
+			break;
+		case "8":
+			populateBottomText(8);
+			break;
+		case "9":
+			populateBottomText(9);
+			break;
+		case "0":
+			populateBottomText(0);
+			break;
+		case ".":
+			populateBottomText(".");
+			break;
+		case ",":
+			populateBottomText(".");
+			break;
+		case "+":
+			btnAddEvents();
+			break;
+		case "-":
+			btnSubtractEvents();
+			break;
+		case "*":
+			btnMultiplyEvents();
+			break;
+		case "/":
+			btnDivideEvents();
+			break;
+		case "Enter":
+			btnEqualsEvents();
+			break;
+	}
 });
 
 clearTopText();
@@ -188,6 +206,67 @@ function operate(firstNumber, secondNumber, operator) {
 		result = "";
 	}
 	return result;
+}
+
+function btnAddEvents() {
+	if (operator == "") {
+		operator = "add";
+		textOperator.textContent = "+";
+		commitFirstNumber(textBottom.textContent);
+		populateTopText(firstNumber);
+	} else {
+		operator = "add";
+		textOperator.textContent = "+";
+	}
+}
+
+function btnSubtractEvents() {
+	if (operator == "") {
+		operator = "subtract";
+		textOperator.textContent = "-";
+		commitFirstNumber(textBottom.textContent);
+		populateTopText(firstNumber);
+	} else {
+		operator = "subtract";
+		textOperator.textContent = "-";
+	}
+}
+
+function btnMultiplyEvents() {
+	if (operator == "") {
+		operator = "multiply";
+		textOperator.textContent = "x";
+		commitFirstNumber(textBottom.textContent);
+		populateTopText(firstNumber);
+	} else {
+		operator = "multiply";
+		textOperator.textContent = "x";
+	}
+}
+
+function btnDivideEvents() {
+	if (operator == "") {
+		operator = "divide";
+		textOperator.textContent = "/";
+		commitFirstNumber(textBottom.textContent);
+		populateTopText(firstNumber);
+	} else {
+		operator = "divide";
+		textOperator.textContent = "/";
+	}
+}
+
+function btnEqualsEvents() {
+	if ((!(firstNumber == ""), !(secondNumber == ""), !(operator == ""))) {
+		commitSecondNumber(textBottom.textContent);
+		clearTopText();
+		clearOperatorText();
+		clearBottomText();
+		populateBottomText(operate(firstNumber, secondNumber, operator));
+		firstNumber = "";
+		secondNumber = "";
+		operator = "";
+	}
 }
 
 function commitFirstNumber(string) {
