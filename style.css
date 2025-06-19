@@ -10,10 +10,32 @@ body {
 }
 #screen {
 	display: flex;
-	justify-content: end;
 	background-color: rgb(172, 172, 172);
 	margin: 0px;
-	padding: 16px;
+	padding: 8px;
+	flex-direction: column;
+}
+
+#topScreen {
+	display: flex;
+	justify-content: end;
+}
+
+#bottomScreen {
+	margin: 0px;
+	display: flex;
+	flex: auto;
+	justify-content: space-between;
+}
+
+#leftSide,
+#rightSide,
+#topText {
+	margin: 0px;
+}
+
+#topText {
+	font-size: smaller;
 }
 button {
 	min-width: 50px;
