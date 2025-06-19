@@ -1,6 +1,7 @@
 let firstNumber;
 let secondNumber;
-let operator;
+let operator = "";
+
 let screenTop = "";
 let screenBottom = "";
 let screenOperator = "";
@@ -23,16 +24,119 @@ const btnMultiply = document.getElementById("btn_multiply");
 const btnDivide = document.getElementById("btn_divide");
 const btnEquals = document.getElementById("btn_equals");
 const btnDelete = document.getElementById("btn_delete");
-const btnAC = document.getElementById("btn_ac");
+const btnAc = document.getElementById("btn_ac");
 
 // Others
 const textTop = document.getElementById("topText");
 const textBottom = document.getElementById("rightSide");
 const textOperator = document.getElementById("leftSide");
 
-btn_1.addEventListener("click", function () {
+// Events
+btn1.addEventListener("click", function () {
 	populateBottomText(1);
 });
+btn2.addEventListener("click", function () {
+	populateBottomText(2);
+});
+btn3.addEventListener("click", function () {
+	populateBottomText(3);
+});
+btn4.addEventListener("click", function () {
+	populateBottomText(4);
+});
+btn5.addEventListener("click", function () {
+	populateBottomText(5);
+});
+btn6.addEventListener("click", function () {
+	populateBottomText(6);
+});
+btn7.addEventListener("click", function () {
+	populateBottomText(7);
+});
+btn8.addEventListener("click", function () {
+	populateBottomText(8);
+});
+btn9.addEventListener("click", function () {
+	populateBottomText(9);
+});
+btn0.addEventListener("click", function () {
+	populateBottomText(0);
+});
+btnPoint.addEventListener("click", function () {
+	populateBottomText(".");
+});
+
+btnAc.addEventListener("click", function () {
+	firstNumber = "";
+	secondNumber = "";
+	operator = "";
+	clearTopText();
+	clearOperatorText();
+	clearBottomText();
+});
+
+btnAdd.addEventListener("click", function () {
+	if (operator == "") {
+		operator = "add";
+		textOperator.textContent = "+";
+		commitFirstNumber(textBottom.textContent);
+		populateTopText(firstNumber);
+	} else {
+		operator = "add";
+		textOperator.textContent = "+";
+	}
+});
+
+btnSubtract.addEventListener("click", function () {
+	if (operator == "") {
+		operator = "subtract";
+		textOperator.textContent = "-";
+		commitFirstNumber(textBottom.textContent);
+		populateTopText(firstNumber);
+	} else {
+		operator = "subtract";
+		textOperator.textContent = "-";
+	}
+});
+
+btnMultiply.addEventListener("click", function () {
+	if (operator == "") {
+		operator = "multiply";
+		textOperator.textContent = "x";
+		commitFirstNumber(textBottom.textContent);
+		populateTopText(firstNumber);
+	} else {
+		operator = "multiply";
+		textOperator.textContent = "x";
+	}
+});
+
+btnDivide.addEventListener("click", function () {
+	if (operator == "") {
+		operator = "divide";
+		textOperator.textContent = "/";
+		commitFirstNumber(textBottom.textContent);
+		populateTopText(firstNumber);
+	} else {
+		operator = "divide";
+		textOperator.textContent = "/";
+	}
+});
+
+btnEquals.addEventListener("click", function () {
+	commitSecondNumber(textBottom.textContent);
+	clearTopText();
+	clearOperatorText();
+	clearBottomText();
+	populateBottomText(operate(firstNumber, secondNumber, operator));
+	firstNumber = "";
+	secondNumber = "";
+	operator = "";
+});
+
+clearTopText();
+clearOperatorText();
+clearBottomText();
 
 // FUNCTIONS
 function numberAdd(a, b) {
@@ -74,9 +178,29 @@ function operate(firstNumber, secondNumber, operator) {
 	}
 	return result;
 }
+
+function commitFirstNumber(string) {
+	firstNumber = parseFloat(string);
+	clearBottomText();
+}
+function commitSecondNumber(string) {
+	secondNumber = parseFloat(string);
+}
+
 function clearBottomText() {
 	textBottom.textContent = "";
 }
+function clearTopText() {
+	textTop.textContent = "";
+}
+
+function clearOperatorText() {
+	textOperator.textContent = "";
+}
 function populateBottomText(number) {
 	textBottom.textContent = textBottom.textContent + number;
+}
+
+function populateTopText(number) {
+	textTop.textContent = number;
 }

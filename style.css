@@ -32,6 +32,7 @@ body {
 #rightSide,
 #topText {
 	margin: 0px;
+	min-height: 18px;
 }
 
 #topText {
