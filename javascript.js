@@ -124,14 +124,20 @@ btnDivide.addEventListener("click", function () {
 });
 
 btnEquals.addEventListener("click", function () {
-	commitSecondNumber(textBottom.textContent);
-	clearTopText();
-	clearOperatorText();
-	clearBottomText();
-	populateBottomText(operate(firstNumber, secondNumber, operator));
-	firstNumber = "";
-	secondNumber = "";
-	operator = "";
+	if ((!(firstNumber == ""), !(secondNumber == ""), !(operator == ""))) {
+		commitSecondNumber(textBottom.textContent);
+		clearTopText();
+		clearOperatorText();
+		clearBottomText();
+		populateBottomText(operate(firstNumber, secondNumber, operator));
+		firstNumber = "";
+		secondNumber = "";
+		operator = "";
+	}
+});
+
+btnDelete.addEventListener("click", function () {
+	textBottom.textContent = textBottom.textContent.slice(0, -1);
 });
 
 clearTopText();
@@ -176,6 +182,11 @@ function operate(firstNumber, secondNumber, operator) {
 		default:
 			break;
 	}
+	result = Math.round(result * 100) / 100;
+	if (result == "Infinity") {
+		alert("Dont destroy the universe!");
+		result = "";
+	}
 	return result;
 }
 
@@ -198,7 +209,13 @@ function clearOperatorText() {
 	textOperator.textContent = "";
 }
 function populateBottomText(number) {
-	textBottom.textContent = textBottom.textContent + number;
+	if (number == ".") {
+		if (!textBottom.textContent.includes(".")) {
+			textBottom.textContent = textBottom.textContent + number;
+		}
+	} else {
+		textBottom.textContent = textBottom.textContent + number;
+	}
 }
 
 function populateTopText(number) {
